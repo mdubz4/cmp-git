@@ -107,6 +107,11 @@ function M.get_git_info(remotes, opts)
                     host, owner, repo = string.match(clean_remote_origin_url, "^git.*@(.+):(.+)/(.+)$")
 
                     if host == nil then
+                        -- Add this line for work SSH format
+                        host, owner, repo = string.match(clean_remote_origin_url, "^[^@]+@(.+):(.+)/(.+)$")
+                    end
+
+                    if host == nil then
                         host, owner, repo = string.match(clean_remote_origin_url, "^https?://(.+)/(.+)/(.+)$")
                     end
 
